@@ -5,3 +5,20 @@
 
 // Стили для файла с примером HTML-фрагмента
 @import './example';
+
+
+// Colors
+$bg-color: rgb(255, 255, 255);
+$dot-color: rgb(30, 29, 32);
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 22px;
+
+body {
+  background:
+    linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+    linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+    $dot-color;
+  background-size: $dot-space $dot-space;
+}

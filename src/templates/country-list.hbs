@@ -1,10 +1,5 @@
-<div class="card-block">
-  <div class="card-group">
-      <img src="{{flag}}" alt="{{name}}">
-  </div>
-  <div class="card-body">
-    <ul class="card-body-list">
-      <li class="card-body-item">{{name}}</li>
-    </ul>
-  </div>
-</div>
+<ul class="list-group">
+  {{#each this}}
+  <li class="list-group-item">{{name}}</li>
+  {{/each}}
+</ul>
