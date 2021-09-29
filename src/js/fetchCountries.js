@@ -17,20 +17,29 @@ console.log(refs.searchInput);
 
 function onSearch(e) {
   e.preventDefault();
-  const country = e.target.value;
-  if (country !== '') {
-    fetchCountries(country).then(data => renderData(data));
+  let country = e.target.value;
+  if ('' !== country.trim()) {
+    fetchCountries(country)
+      .then(data => {
+        if (data.hasOwnProperty('status')) {
+          throw Error("couldn't fetch, because: " + response.status);
+        }
+        renderData(data);
+      })
+      .catch(searchError);
   } else {
     refs.cardContainer.innerHTML = null;
   }
 }
 
 function searchError(err) {
-  if (err.message === '404') {
-    error({
-      text: 'too many matches found, please, enter a more specsfsc query!',
-    });
-  }
+  error({
+    text: 'Country not found!',
+    maxTextHeight: null,
+    delay: 2000,
+    sticker: false,
+  });
+  refs.cardContainer.innerHTML = null;
 }
 
 function appendCountriesMarkup(countries) {
@@ -42,7 +51,6 @@ function appendCountries(countries) {
 }
 
 function renderData(data) {
-  console.log(data);
   const size = data.length;
   if (size > 10) {
     error({
