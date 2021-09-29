@@ -13,8 +13,6 @@ defaultModules.set(PNotifyMobile, {});
 
 const refs = getRefs();
 refs.searchInput.addEventListener('input', debounce(onSearch, 500));
-console.log(refs.searchInput);
-
 function onSearch(e) {
   e.preventDefault();
   let country = e.target.value;
